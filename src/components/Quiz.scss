@@ -1,0 +1,11 @@
+@import '../data/variables.scss';
+
+.quiz {
+
+    &_droparea {
+        width: 75px;
+        border: 1px solid black;
+        padding: 0.2rem;
+        margin: 0 0.3rem;
+    }
+}
