@@ -5,10 +5,10 @@ export const questionList = [
     "I think Ø mice are great Ø animals.",
     "The woman is friends with a doctor.",
     "Some people know the answer to the question.",
-    "Ø people like money."
+    "ØØ people like money."
 ]
 
 export const questionListLength = questionList.length
 
 export const articlesLower = ["a", "an", "the", "Ø"]
-export const articlesUpper = ["Ø", "A", "An", "The"]
+export const articlesUpper = ["ØØ", "A", "An", "The"]

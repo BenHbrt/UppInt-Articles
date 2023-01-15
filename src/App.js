@@ -1,6 +1,5 @@
 import './App.scss'
 import { useState } from 'react'
-import generateQandA from './data/generateQandA';
 
 import Quiz from './components/Quiz';
 
