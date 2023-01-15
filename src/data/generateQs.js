@@ -10,9 +10,9 @@ const generateQs = (index) => {
             newQuestionArr.push({type: "text", text: tempArr.join(" ")})
             tempArr = []
             if (articlesLower.includes(word)) {
-                newQuestionArr.push({type: "ans", text: "a", ans: word, caps: false, correct: undefined})
+                newQuestionArr.push({type: "ans", text: "---", ans: word, caps: false, correct: undefined})
             } else {
-                newQuestionArr.push({type: "ans", text: "A", ans: word, caps: true, correct: undefined})
+                newQuestionArr.push({type: "ans", text: "---", ans: word, caps: true, correct: undefined})
             }
         } else {
             tempArr.push(word)

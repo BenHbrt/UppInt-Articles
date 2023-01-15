@@ -1,0 +1,22 @@
+@import '../data/variables.scss';
+
+.button {
+    border: 1px solid;
+    padding: 0.2rem;
+    border-radius: 0.7rem;
+}
+
+.disabled {
+    border-color: $disabled;
+    color: $disabled;
+}
+
+.active {
+    border-color: $active;
+    color: $active;
+}
+
+.active:hover {
+    background-color: $active-hover;
+    cursor: pointer;
+}
