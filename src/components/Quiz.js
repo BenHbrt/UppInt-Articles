@@ -42,12 +42,28 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
                 result = false
             }
         })
-        console.log(result)
+
         if (result === true) {
             setIsCorrect(true)
         } else {
             setIsCorrect(false)
         }
+        
+        const newArr = question.map((item) => {
+            return item
+        })
+   
+        newArr.forEach((item) => {
+            if (item.type === 'ans') {
+                if (item.text === item.ans) {
+                    item.correct = true
+                } else {
+                    item.correct = false
+                }
+            }
+        })
+        setQuestion(newArr)
+
     }
 
     useEffect(() => {
@@ -66,14 +82,14 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
                             return <span key={i}>{item.text}</span>
                         } else {
                             if (item.caps === false) {
-                                return <select onChange={optionSelect} key={i} name={i}>
+                                return <select onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`}>
                                 <option value="a">a</option>
                                 <option value="an">an</option>
                                 <option value="the">the</option>
                                 <option value="Ø">Ø</option>
                                 </select>
                             } else {
-                                return <select onChange={optionSelect} key={i} name={i}>
+                                return <select onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`}>
                                 <option value="A">A</option>
                                 <option value="An">An</option>
                                 <option value="The">The</option>
