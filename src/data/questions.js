@@ -8,7 +8,8 @@ export const questionList = [
     "The woman is friends with a doctor.",
     "Some people know the answer to the question.",
     "ØØ people like money.",
-    "There are many Ø people around the world who like the president and his Ø pets."
+    "There are many Ø people around the world who like the president and his Ø pets.",
+    "I like Ø coffee."
 ]
 
 export const questionListLength = questionList.length

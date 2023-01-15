@@ -18,14 +18,19 @@ body {
 }
 
 body {
-    background-image: url(./images/background.jpg);
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 .App {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 1rem 1rem 1rem;
+    background-image: url(https://cdn.pixabay.com/photo/2012/11/02/05/23/question-63916_960_720.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 .title {
@@ -37,12 +42,22 @@ body {
     font-weight: 700;
     padding: $padding 0;
     margin-bottom: 1rem;
+    width: 100%;
+
+    @media screen and (min-width: 645px) {
+        width: 38.25rem;
+    }
 }
 
 .main {
     border: $border;
+    width: 100%;
     border-radius: $corner;
     background-color: $background;
     padding: ($padding + 0.3rem) ($padding + 0.5rem);
+
+    @media screen and (min-width: 645px) {
+        width: 38.25rem;
+    }
 
 }

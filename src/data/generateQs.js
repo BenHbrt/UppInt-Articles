@@ -12,7 +12,11 @@ const generateQs = (index) => {
             if (articlesLower.includes(word)) {
                 newQuestionArr.push({type: "ans", text: "---", ans: word, caps: false, correct: undefined})
             } else {
-                newQuestionArr.push({type: "ans", text: "---", ans: word, caps: true, correct: undefined})
+                if (word === "ØØ") {
+                    newQuestionArr.push({type: "ans", text: "---", ans: "Ø", caps: true, correct: undefined})
+                } else {
+                    newQuestionArr.push({type: "ans", text: "---", ans: word, caps: true, correct: undefined})
+                }   
             }
         } else {
             tempArr.push(word)

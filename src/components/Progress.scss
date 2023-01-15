@@ -1,0 +1,23 @@
+.progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &_bar {
+        height: 1rem;
+        width: 16.15rem;
+        border: 1px solid black;
+        background-color: transparent;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        margin-bottom: 0.4rem;
+    }
+    
+    &_completed {
+        height: 100%;
+        background-color: lightgray;
+        border-radius: 0.5rem;
+        transition: 1s;
+    }
+}

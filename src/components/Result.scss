@@ -1,0 +1,17 @@
+.result {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.result-correct {
+    color: green;
+}
+
+.result-incorrect {
+    color: red;
+}

@@ -1,9 +1,12 @@
 import './Quiz.scss';
 import generateQs from "../data/generateQs";
 import { questionListLength } from "../data/questions";
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import Button from './Button';
+import Result from './Result';
+import Answers from './Answers';
+import Progress from './Progress';
 
 const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
 
@@ -13,6 +16,7 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
     const [canCheck, setCanCheck] = useState(false)
     const [canMove, setCanMove] = useState(false)
     const [ansArr, setAnsArr] = useState([])
+    const answersListLength = useRef(0)
 
     const optionSelect = (e) => {
         const newArr = question.map((item) => {
@@ -89,65 +93,74 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
 
     useEffect(() => {
         const questionA = generateQs(questionNum)
+        let numAns = 0
+        questionA.forEach((item) => {
+            if (item.type === "ans") {
+                numAns++
+            }
+        })
+        answersListLength.current = numAns
         setQuestion(questionA)
     }, [questionNum])
 
     return (
         <div className="quiz">
             {finished === false && <div className="quiz_playing">
-                <div>Question {questionNum + 1} of {questionListLength}</div>
-                <div>Score: {score}</div>
+                <div className="score">Score <div>{score}</div></div>
                 <br/>
-                <div>Please select the correct option(s):</div><br/>
+                <br/>
+                <div className="instructions">Please select the correct option{`${answersListLength.current > 1 ? "s" : ""}`}:</div><br/>
+                <br/>
                 <span className="question">
                 {
                     question && question.map((item, i) => {
                         if (item.type === "text") {
                             return <span key={i}>{item.text}</span>
                         } else {
-                            if (item.caps === false) {
-                                return <select disabled={canMove ? true : false} onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`} value={`${(item.text)}`}>
-                                <option value="---">---</option>
-                                <option value="a">a</option>
-                                <option value="an">an</option>
-                                <option value="the">the</option>
-                                <option value="Ø">Ø</option>
-                                </select>
+                            if (item.correct === undefined) {
+                                if (item.caps === false) {
+                                    return <select disabled={canMove ? true : false} onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`} value={`${(item.text)}`}>
+                                    <option value="---">---</option>
+                                    <option value="a">a</option>
+                                    <option value="an">an</option>
+                                    <option value="the">the</option>
+                                    <option value="Ø">Ø</option>
+                                    </select>
+                                } else {
+                                    return <select disabled={canMove ? true : false} onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`} value={`${(item.text)}`}>
+                                    <option value="---">---</option>
+                                    <option value="A">A</option>
+                                    <option value="An">An</option>
+                                    <option value="The">The</option>
+                                    <option value="Ø">Ø</option>
+                                    </select>
+                                }
                             } else {
-                                return <select disabled={canMove ? true : false} onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`} value={`${(item.text)}`}>
-                                <option value="---">---</option>
-                                <option value="A">A</option>
-                                <option value="An">An</option>
-                                <option value="The">The</option>
-                                <option value="ØØ">Ø</option>
-                                </select>
-                            }
-                        }
-                        
+                                return <div key={i} className={`answertext ${(item.correct ? "correct" : "incorrect")}`}>
+                                   <span>{item.text}</span>
+                                </div>  
+                            }   
+                        }  
                     })
                 }
                 </span>
                 <br/>
                 <br/>
-                {isCorrect !== undefined && <div className="result">
-                        {
-                            isCorrect ? <div>Correct</div> : <div>Incorrect</div>
-                        }
-                        {
-                            !isCorrect ? <div>Answers: <span>{ansArr.map((item, i) => {
-                                return <span className={`answer ${!item.correct ? "wrong" : ""}`}>{item.ans}</span>
-                            })}</span></div> : <div></div>
-                        }
-                    </div>}
-
+                <Result isCorrect={isCorrect} />
                 <br/>
+                <Answers length={answersListLength.current} answers={ansArr} isCorrect={isCorrect} />
+                <br/>
+                <div className="buttonbox">
                 {
                     canMove ? <Button text="Next Question" func={questionMove} active={true} /> :
                     <Button text="Check Answers" func={checkAnswers} active={canCheck} />
                 }
-                <button onClick={() => console.log(question)}>Question</button><br/>
+                </div>
+                {/* <button onClick={() => console.log(question)}>Question</button><br/> */}
                 {/* <button onClick={() => console.log(questionNum)}>QuestionNum</button><br/>
                 <button onClick={() => console.log(questionListLength)}>QuestionNum</button><br/> */}
+                <br/>
+                <Progress questionNum={questionNum} questionListLength={questionListLength} canMove={canMove} />
             </div>}
             {finished === true && <div>Finished!</div>}
         </div>
