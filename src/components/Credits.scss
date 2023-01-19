@@ -1,0 +1,27 @@
+.credits {
+    background-color: antiquewhite;
+    position: relative;
+    margin-top: -1rem;
+
+    & > h2 {
+        text-align: center;
+    }
+
+    & > a > img {
+        height: 4.25em;
+        margin-right: 2em;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &_icons {
+        display: flex;
+        align-items: center;
+
+        & > img {
+            width: 2.8em;
+        }
+    }
+}

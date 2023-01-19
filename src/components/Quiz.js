@@ -8,10 +8,9 @@ import Result from './Result';
 import Answers from './Answers';
 import Progress from './Progress';
 
-const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
+const Quiz = ({score, setScore, questionNum, setQuestionNum, gameStage, setDisplay}) => {
 
     const [question, setQuestion] = useState(null)
-    const [finished, setFinished] = useState(false)
     const [isCorrect, setIsCorrect] = useState(undefined)
     const [canCheck, setCanCheck] = useState(false)
     const [canMove, setCanMove] = useState(false)
@@ -86,9 +85,12 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
         setAnsArr([])
         if (questionNum + 1 < questionListLength) {
             setQuestionNum(questionNum + 1)
-        } else {
-            setFinished(true)
-        }  
+        }
+    }
+
+    const showResults = () => {
+        gameStage.current = "end"
+        setDisplay("results")
     }
 
     useEffect(() => {
@@ -105,7 +107,7 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
 
     return (
         <div className="quiz">
-            {finished === false && <div className="quiz_playing">
+            <div className="quiz_playing">
                 <div className="score">Score <div>{score}</div></div>
                 <br/>
                 <br/>
@@ -120,7 +122,7 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
                             if (item.correct === undefined) {
                                 if (item.caps === false) {
                                     return <select disabled={canMove ? true : false} onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`} value={`${(item.text)}`}>
-                                    <option value="---">---</option>
+                                    <option value="---" disabled selected hidden>---</option>
                                     <option value="a">a</option>
                                     <option value="an">an</option>
                                     <option value="the">the</option>
@@ -128,7 +130,7 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
                                     </select>
                                 } else {
                                     return <select disabled={canMove ? true : false} onChange={optionSelect} key={i} name={i} className={`${(item.correct !== undefined ? `${(item.correct ? "correct" : "incorrect")}` : "")}`} value={`${(item.text)}`}>
-                                    <option value="---">---</option>
+                                    <option value="---" disabled selected hidden>---</option>
                                     <option value="A">A</option>
                                     <option value="An">An</option>
                                     <option value="The">The</option>
@@ -152,7 +154,7 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
                 <br/>
                 <div className="buttonbox">
                 {
-                    canMove ? <Button text="Next Question" func={questionMove} active={true} /> :
+                    canMove ? (questionNum + 1 === questionListLength) ? <Button text="See Results" func={showResults} active={true} /> : <Button text="Next Question" func={questionMove} active={true} /> :
                     <Button text="Check Answers" func={checkAnswers} active={canCheck} />
                 }
                 </div>
@@ -161,8 +163,7 @@ const Quiz = ({score, setScore, questionNum, setQuestionNum}) => {
                 <button onClick={() => console.log(questionListLength)}>QuestionNum</button><br/> */}
                 <br/>
                 <Progress questionNum={questionNum} questionListLength={questionListLength} canMove={canMove} />
-            </div>}
-            {finished === true && <div>Finished!</div>}
+            </div>
         </div>
     )   
 }

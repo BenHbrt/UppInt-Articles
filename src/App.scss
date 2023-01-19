@@ -43,6 +43,7 @@ body {
     padding: $padding 0;
     margin-bottom: 1rem;
     width: 100%;
+    position: relative;
 
     @media screen and (min-width: 645px) {
         width: 38.25rem;
@@ -60,4 +61,21 @@ body {
         width: 38.25rem;
     }
 
+}
+
+.creditsbutton {
+    border: 1px solid black;
+    display: inline-block;
+    border-radius: 0.625rem;
+    padding: 0 0.3rem;
+    font-size: 1rem;
+    font-weight: 500;
+    position: absolute;
+    right: 0.346875rem;
+    top: 0.346875rem;
+}
+
+.creditsbutton:hover {
+    cursor: pointer;
+    background-color: lightgray;
 }
