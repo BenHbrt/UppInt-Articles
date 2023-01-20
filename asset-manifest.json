@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/UppInt-Articles/static/css/main.1dc9c44d.css",
-    "main.js": "/UppInt-Articles/static/js/main.f4545d42.js",
+    "main.js": "/UppInt-Articles/static/js/main.62ee03c4.js",
     "index.html": "/UppInt-Articles/index.html",
     "main.1dc9c44d.css.map": "/UppInt-Articles/static/css/main.1dc9c44d.css.map",
-    "main.f4545d42.js.map": "/UppInt-Articles/static/js/main.f4545d42.js.map"
+    "main.62ee03c4.js.map": "/UppInt-Articles/static/js/main.62ee03c4.js.map"
   },
   "entrypoints": [
     "static/css/main.1dc9c44d.css",
-    "static/js/main.f4545d42.js"
+    "static/js/main.62ee03c4.js"
   ]
 }
