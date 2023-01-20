@@ -14,7 +14,7 @@ export const questionList = [
     "I don't like going to Ø large, showy weddings. I'd only go to a wedding if it was very low-key.",
     "Some people say that Ø money makes the world go round.",
     "After she'd had her accident, she was taken to the city hospital.",
-    "ØØ Louvre is a famouse art gallery in Ø Paris.",
+    "The Louvre is a famous art gallery in Ø Paris.",
     "The first time he did it, I was annoyed. However, the second time he did it, I was furious!",
     "I usually like Ø snakes, but the snakes I saw on my trip to the jungle were huge and terrifying!",
     "The metro station near my flat is now closed, so I have travel to work by Ø tram instead.",
